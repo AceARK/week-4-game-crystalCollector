@@ -1,93 +1,96 @@
 // Pseudocode
 
-// 1. Generate target score randomly between 19 and 120 (Math.random)
-// 2. Generate crystal values randomly between 1 and 12 (Math.random)
-// 3. Every crystal must have different score (push each value into array, check if generated random is in array, if not, push, else generate new)
-// 4. On click of crystal, score = score + crystal value. Keep checking after each addition if score > targetscore.
-// 5. If score > target score, you lose message, losses ++, generate another random target score and crystal values. (call reset())
-// 6. If score == target score, you win message, wins++, generate another random target score and crystal values. (call reset())
+// game object with functions -> generate random target value, generate random crystal values, reset, check score to target value
+// 1. Generate random target value
+// 2. Generate random crystal values
+// 3. Reset all values
+// 4. check score to target value
 
+// Game object 
 var game = {
-	targetScoreValue : 0,
+	targetValue : 0,
 	crystalValues : [],
-	alphaValue : 0,
-	betaValue : 0,
-	gammaValue : 0,
-	omegaValue : 0,
 	score : 0,
+	wins : 0,
+	losses : 0,
+	numberOfCrystals : 4,
 
-	generateTargetScore : function generateTargetScore() {
-
-		targetScoreValue = Math.floor((Math.random()*101)+19);
-		$("#targetScore").html(targetScoreValue);
-		console.log(targetScoreValue);
+	generateRandomTargetValue : function generateRandomTargetValue() {
+		this.targetValue = Math.floor(Math.random()*101 + 19);
+		$("#targetScore").html(this.targetValue);
+		console.log("target value - " + this.targetValue);
 	},
 
-	generateCrystalValues :function generateCrystalValues() {
-		for(i=0; i<4; i++){                   // create 4 random numbers
-            var randomNumber = Math.floor((Math.random()*12)+1); // random number created
-            if(this.crystalValues.length == 0){              // if array is not empty, check for same values
-              this.crystalValues.push(randomNumber);
-            }
-            else {
-              if(this.crystalValues.indexOf(randomNumber) == -1){  // if random number is not a part of the array
-                this.crystalValues.push(randomNumber);     // push it to array
-              }
-              else {
-                var randomNumber = Math.floor((Math.random()*12)+1); // if not empty, get new random number
-              }
-            }
-          }
-
-		// this.alphaValue = this.crystalValues[0];
-		// this.betaValue = this.crystalValues[1];
-		// this.gammaValue = this.crystalValues[2];
-		// this.omegaValue = this.crystalValues[3];
-
-		$("#alpha").attr("value", this.crystalValues[0]);
-		$("#beta").attr("value", this.crystalValues[1]);
-		$("#gamma").attr("value", this.crystalValues[2]);
-		$("#omega").attr("value", this.crystalValues[3]);
-
-		// console.log(this.alphaValue);
-		// console.log(this.betaValue);			//// BUG -> crystal values sometimes become undefined.
-		// console.log(this.gammaValue);
-		// console.log(this.omegaValue);
+	generateRandomCrystalValues : function generateRandomCrystalValues() {
+		for(var i=0; i<numberOfCrystals; i++){
+			var randomNumber = Math.floor(Math.random()*12 + 1);
+			while(this.crystalValues.indexOf(randomNumber) != -1){
+				var randomNumber = Math.floor(Math.random()*12 + 1);
+			}
+			this.crystalValues.push(randomNumber);
+		}
+		console.log(this.crystalValues);	
+		// Call function to attach values from crystalValues to each crystal
+		this.attachValuesToCrystal();	
 	},
 
-	checkScore : function checkScore() {
-		this.score = this.score + $(".gem").val();
-		if(this.score == this.targetScoreValue){
+	attachValuesToCrystal : function attachValuesToCrystal() {
+		// Attaching each crystal with a value from crystalValues
+		$('.gem').each(function(){
+		  $(this).attr("data-crystalvalue", game.crystalValues.pop());
+		});
+	}
+
+	generateRandomCrystalValuesAlternateVersion : function generateRandomCrystalValuesAlternateVersion() {
+			var randomNumber = Math.floor(Math.random()*12 + 1);
+			if(this.crystalValues.indexOf(randomNumber) != -1) {
+				this.generateRandomCrystalValuesAlternateVersion();
+			} else {
+				this.crystalValues.push(randomNumber);
+			}		
+	},
+
+	checkScore : function checkScore(crystalValue) {
+		this.score = crystalValue + this.score;
+		console.log("Score - " + this.score);
+		// If score = targetValue
+		if(this.score == this.targetValue) {
 			this.wins++;
+			console.log("Wins " + this.wins);
 			$("#wins").html(this.wins);
-			// this.reset();
+			this.reset();
 		}
-		if(this.score > this.targetScoreValue){
+		if(this.score > this.targetValue) {
 			this.losses++;
+			console.log("Losses " + this.losses);
 			$("#losses").html(this.losses);
-			// this.reset();
+			this.reset();
 		}
-		console.log(this.score);
-		
 	},
 
 	reset : function reset() {
-		crystalValues = [];
-		$(".gem").attr("value","");
-		targetScoreValue = 0;
-		$("#targetScore").html("");
-	}
-
-
+		this.targetValue = 0;
+		this.crystalValues = [];
+		this.score = 0;
+		this.generateRandomTargetValue();
+		this.generateRandomCrystalValues();
+	}	
 }
 
-$( document ).ready(function() {
-
-	game.generateTargetScore();
-	game.generateCrystalValues();
-    // console.log(targetScoreValue);
-    $(".gem").on("click", function(){
-    	game.checkScore();
-    });
-
+$(document).ready(function(){
+	game.generateRandomTargetValue();
+	//game.generateRandomCrystalValues();
+	for (var i = 0; i < 4; i++) {
+		game.generateRandomCrystalValuesAlternateVersion();
+	}
+	$('.gem').each(function(){
+		  $(this).attr("data-crystalvalue", game.crystalValues.pop());
+		});
+	$('.gem').on("click", function(){
+		var value = $(this).data("crystalvalue");
+		game.checkScore(value);
+	});
 });
+
+
+
