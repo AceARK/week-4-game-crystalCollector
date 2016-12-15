@@ -1,0 +1,27 @@
+#alpha {
+	background-color: red;
+	opacity: 0.8;
+	width: 250px;
+	height: 250px;
+}
+
+#beta {
+	background-color: green;
+	opacity: 0.8;
+	width: 250px;
+	height: 250px;
+}
+
+#gamma {
+	background-color: orange;
+	opacity: 0.8;
+	width: 250px;
+	height: 250px;
+}
+
+#omega {
+	background-color: purple;
+	opacity: 0.8;
+	width: 250px;
+	height: 250px;
+}

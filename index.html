@@ -2,8 +2,40 @@
 <html>
 <head>
 	<title>Crystal Collector Game</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Crystal Collector Game</h1>
+			</div>
+		</div>
 
+		<div class="row">
+			<div class="col-md-4 col-md-offset-3 targetDiv">
+				<h2>Target Score:<span id="targetScore"></span></h2>
+			</div>
+			<div class="col-md-3">
+				<h2><p>Wins: <span id="wins"></span></p></h2>
+				<h2><p>Losses: <span id="losses"></span></p></h2>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="row">
+					<div class="gem" id="alpha" class="col-md-3"></div>
+					<div class="gem" id="beta" class="col-md-3"></div>
+					<div class="gem" id="gamma" class="col-md-3"></div>
+					<div class="gem" id="omega" class="col-md-3"></div>
+				</div>
+			</div>
+		</div>
+	
+	</div>
 </body>
 </html>
