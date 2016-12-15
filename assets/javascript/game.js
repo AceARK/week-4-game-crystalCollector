@@ -22,32 +22,21 @@ var game = {
 	},
 
 	generateRandomCrystalValues : function generateRandomCrystalValues() {
-		for(var i=0; i<numberOfCrystals; i++){
+		for(var i=0; i<this.numberOfCrystals; i++){
 			var randomNumber = Math.floor(Math.random()*12 + 1);
 			while(this.crystalValues.indexOf(randomNumber) != -1){
 				var randomNumber = Math.floor(Math.random()*12 + 1);
 			}
 			this.crystalValues.push(randomNumber);
 		}
-		console.log(this.crystalValues);	
-		// Call function to attach values from crystalValues to each crystal
-		this.attachValuesToCrystal();	
+		console.log(this.crystalValues);		
 	},
 
 	attachValuesToCrystal : function attachValuesToCrystal() {
 		// Attaching each crystal with a value from crystalValues
 		$('.gem').each(function(){
-		  $(this).attr("data-crystalvalue", game.crystalValues.pop());
+		  $(this).data("crystalvalue", game.crystalValues.pop());
 		});
-	}
-
-	generateRandomCrystalValuesAlternateVersion : function generateRandomCrystalValuesAlternateVersion() {
-			var randomNumber = Math.floor(Math.random()*12 + 1);
-			if(this.crystalValues.indexOf(randomNumber) != -1) {
-				this.generateRandomCrystalValuesAlternateVersion();
-			} else {
-				this.crystalValues.push(randomNumber);
-			}		
 	},
 
 	checkScore : function checkScore(crystalValue) {
@@ -71,25 +60,29 @@ var game = {
 	reset : function reset() {
 		this.targetValue = 0;
 		this.crystalValues = [];
-		this.score = 0;
+		// $(".gem").data("crystalvalue","");
+		this.score = 0; 
+		$("#score").html(this.score);
 		this.generateRandomTargetValue();
 		this.generateRandomCrystalValues();
+		this.attachValuesToCrystal();
 	}	
-}
+};
 
 $(document).ready(function(){
+
 	game.generateRandomTargetValue();
-	//game.generateRandomCrystalValues();
-	for (var i = 0; i < 4; i++) {
-		game.generateRandomCrystalValuesAlternateVersion();
-	}
-	$('.gem').each(function(){
-		  $(this).attr("data-crystalvalue", game.crystalValues.pop());
-		});
+
+	game.generateRandomCrystalValues();
+
+	// Call function to attach values from crystalValues to each crystal
+	game.attachValuesToCrystal();
+
 	$('.gem').on("click", function(){
 		var value = $(this).data("crystalvalue");
 		game.checkScore(value);
 	});
+
 });
 
 
