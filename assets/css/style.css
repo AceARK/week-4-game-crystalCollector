@@ -1,27 +1,131 @@
-#alpha {
-	background-color: red;
-	opacity: 0.8;
-	width: 100px;
-	height: 100px;
+* {
+	box-sizing: border-box;
 }
 
-#beta {
-	background-color: green;
-	opacity: 0.8;
-	width: 100px;
-	height: 100px;
+.container-fluid, html {
+	background: url("../images/crystalbg.jpg") no-repeat center center fixed;
+	-webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
-#gamma {
-	background-color: orange;
-	opacity: 0.8;
-	width: 100px;
-	height: 100px;
+h1 {
+	padding: 45px;
+	font-size: 40px;
 }
 
-#omega {
-	background-color: purple;
-	opacity: 0.8;
-	width: 100px;
-	height: 100px;
+#targetBlock {
+	padding-bottom: 20px;
 }
+
+.game {
+	margin-top: 60px;
+	min-height: 250px;
+}
+
+.crystal {
+	width: 150px;
+	height: 150px;
+	margin: 30px;
+}
+
+.crystal
+{
+    border: 0px solid transparent;    
+    -webkit-transition: box-shadow 2s linear;
+    -moz-transition: box-shadow 2s linear;
+    transition: box-shadow 2s linear;
+}
+
+#red { 
+
+    border-color: #d10042;
+    -webkit-box-shadow: 0 0 20px 10px #d10042;
+    -moz-box-shadow: 0 0 20px 10px #d10042;
+    box-shadow: 0 0 60px 10px #d10042;
+    /* in order: x offset, y offset, [blur size], [spread size], color */
+    -webkit-transition: box-shadow 2s linear;
+    -moz-transition: box-shadow 2s linear;
+    transition: box-shadow 2s linear;
+}
+
+#blue { 
+
+    border-color: #2a36b2;
+    -webkit-box-shadow: 0 0 20px 10px #2a36b2;
+    -moz-box-shadow: 0 0 20px 10px #2a36b2;
+    box-shadow: 0 0 60px 10px #2a36b2;
+    /* in order: x offset, y offset, [blur size], [spread size], color */
+    -webkit-transition: box-shadow 2s linear;
+    -moz-transition: box-shadow 2s linear;
+    transition: box-shadow 2s linear;
+}
+
+#green { 
+
+    border-color: #048900;
+    -webkit-box-shadow: 0 0 20px 10px #048900;
+    -moz-box-shadow: 0 0 20px 10px #048900;
+    box-shadow: 0 0 60px 10px #048900;
+    /* in order: x offset, y offset, [blur size], [spread size], color */
+    -webkit-transition: box-shadow 2s linear;
+    -moz-transition: box-shadow 2s linear;
+    transition: box-shadow 2s linear;
+}
+
+#yellow { 
+
+    border-color: #d3d631;
+    -webkit-box-shadow: 0 0 20px 10px #d3d631;
+    -moz-box-shadow: 0 0 20px 10px #d3d631;
+    box-shadow: 0 0 60px 10px #d3d631;
+    /* in order: x offset, y offset, [blur size], [spread size], color */
+    -webkit-transition: box-shadow 2s linear;
+    -moz-transition: box-shadow 2s linear;
+    transition: box-shadow 2s linear;
+}
+
+/*#red {
+	 background: transparent url("../images/redcrystal.jpg") center center no-repeat;
+}
+
+#blue {
+	 background: transparent url("../images/bluecrystal.jpg") center center no-repeat;
+}
+
+#green {
+	 background: transparent url("../images/greencrystal.jpg") center center no-repeat;
+}
+
+#yellow {
+	 background: transparent url("../images/yellowcrystal.jpg") center center no-repeat;
+}*/
+
+/*@-webkit-keyframes greenPulse {
+  from { background-color: #749a02; -webkit-text-shadow: 0 0 9px #333; }
+  50% { background-color: #91bd09; -webkit-text-shadow: 0 0 18px #91bd09; }
+  to { background-color: #749a02; -webkit-text-shadow: 0 0 9px #333; }
+}
+
+a.green.button {
+  -webkit-animation-name: greenPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+*/
+
+/*<div id="red" class="col-md-3 crystal">
+						
+					</div>
+					<div id="blue" class="col-md-3 crystal">
+						
+					</div>
+					<div id="green" class="col-md-3 crystal">
+						
+					</div>
+					<div id="yellow" class="col-md-3 crystal">
+						
+					</div>*/

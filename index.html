@@ -10,16 +10,21 @@
 <body> 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 text-center">
 				<h1>Crystal Collector Game</h1>
-			</div>
+			</div> 
 		</div>
 
-		<div class="row">
-			<div class="col-md-4 col-md-offset-3 targetDiv">
-				<h2>Target Score:<span id="targetScore"></span></h2>
+		<div class="row game">
+			<div class="col-md-5">
+				<h3>1. You have four crystals with random values assigned to it.</h3>
+				<h3>2. Click on the crystals below to match your score to the target score.</h3>
+				<h3>3. You win if you get a score equal to the target score. Get past that score and you lose.</h3>
+				<h3>4. The game resets once you win or lose. The crystal values also reset.</h3>
+				<h3>So Good Luck!</h3>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-2 col-md-offset-4">
+				<h2 id="targetBlock">Target Score: <span id="targetScore"></span></h2>
 				<h2><p>Wins: <span id="wins"></span></p></h2>
 				<h2><p>Losses: <span id="losses"></span></p></h2>
 				<h2><p>Score: <span id="score"></span></p></h2>
@@ -27,16 +32,15 @@
 		</div>
 	
 		<div class="row">
-			<div class="col-md-9 col-md-offset-2">
+			<div class="col-md-9 col-md-offset-3">
 				<div class="row">
-					<div id="alpha" class="col-md-3 gem"></div>
-					<div id="beta" class="col-md-3 gem"></div>
-					<div id="gamma" class="col-md-3 gem"></div>
-					<div id="omega" class="col-md-3 gem"></div>
+					<img id="red" class="crystal" src="assets/images/redcrystal.jpg">
+					<img id="blue" class="crystal" src="assets/images/bluecrystal.jpg">
+					<img id="green" class="crystal" src="assets/images/greencrystal.jpg">
+					<img id="yellow" class="crystal" src="assets/images/yellowcrystal.jpg">
 				</div>
 			</div>
 		</div>
-	
 	</div>
 </body>
 </html>

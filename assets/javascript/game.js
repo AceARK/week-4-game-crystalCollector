@@ -16,7 +16,7 @@ var game = {
 	numberOfCrystals : 4,
 
 	generateRandomTargetValue : function generateRandomTargetValue() {
-		this.targetValue = Math.floor(Math.random()*101 + 19);
+		this.targetValue = Math.floor(Math.random()*102 + 19);
 		$("#targetScore").html(this.targetValue);
 		console.log("target value - " + this.targetValue);
 	},
@@ -28,30 +28,27 @@ var game = {
 				var randomNumber = Math.floor(Math.random()*12 + 1);
 			}
 			this.crystalValues.push(randomNumber);
-		}
-		console.log(this.crystalValues);		
+		}		
 	},
 
 	attachValuesToCrystal : function attachValuesToCrystal() {
 		// Attaching each crystal with a value from crystalValues
-		$('.gem').each(function(){
+		$('.crystal').each(function(){
 		  $(this).data("crystalvalue", game.crystalValues.pop());
 		});
 	},
 
 	checkScore : function checkScore(crystalValue) {
 		this.score = crystalValue + this.score;
-		console.log("Score - " + this.score);
+		$("#score").html(this.score);
 		// If score = targetValue
 		if(this.score == this.targetValue) {
 			this.wins++;
-			console.log("Wins " + this.wins);
 			$("#wins").html(this.wins);
 			this.reset();
 		}
 		if(this.score > this.targetValue) {
 			this.losses++;
-			console.log("Losses " + this.losses);
 			$("#losses").html(this.losses);
 			this.reset();
 		}
@@ -60,7 +57,6 @@ var game = {
 	reset : function reset() {
 		this.targetValue = 0;
 		this.crystalValues = [];
-		// $(".gem").data("crystalvalue","");
 		this.score = 0; 
 		$("#score").html(this.score);
 		this.generateRandomTargetValue();
@@ -78,7 +74,7 @@ $(document).ready(function(){
 	// Call function to attach values from crystalValues to each crystal
 	game.attachValuesToCrystal();
 
-	$('.gem').on("click", function(){
+	$('.crystal').on("click", function(){
 		var value = $(this).data("crystalvalue");
 		game.checkScore(value);
 	});
