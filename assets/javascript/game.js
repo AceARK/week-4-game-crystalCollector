@@ -18,7 +18,6 @@ var game = {
 	generateRandomTargetValue : function generateRandomTargetValue() {
 		this.targetValue = Math.floor(Math.random()*102 + 19);
 		$("#targetScore").html(this.targetValue);
-		console.log("target value - " + this.targetValue);
 	},
 
 	generateRandomCrystalValues : function generateRandomCrystalValues() {
