@@ -75,6 +75,9 @@ $(document).ready(function(){
 	game.attachValuesToCrystal();
 
 	$('.crystal').on("click", function(){
+		// play sound
+		$("#gemClick")[0].currentTime = 0;
+    	$("#gemClick")[0].play();
 		var value = $(this).data("crystalvalue");
 		game.checkScore(value);
 	});
