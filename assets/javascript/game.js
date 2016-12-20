@@ -42,11 +42,15 @@ var game = {
 		$("#score").html(this.score);
 		// If score = targetValue
 		if(this.score == this.targetValue) {
+			$("#winSound")[0].currentTime = 0;
+	    	$("#winSound")[0].play();
 			this.wins++;
 			$("#wins").html(this.wins);
 			this.reset();
 		}
 		if(this.score > this.targetValue) {
+			$("#lossSound")[0].currentTime = 0;
+	    	$("#lossSound")[0].play();
 			this.losses++;
 			$("#losses").html(this.losses);
 			this.reset();
